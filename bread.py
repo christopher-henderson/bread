@@ -1,0 +1,86 @@
+class Gram(int):
+	pass
+
+
+class Calorie(int):
+	pass
+
+
+class Nutrition:
+
+	SERVING_SIZE: Gram = 1
+
+	CALORIES:Calorie   = 0
+	CARBS: Gram        = 0
+	PROTEIN: Gram      = 0
+	FAT: Gram          = 0
+	FIBER: Gram        = 0
+
+	def __init__(self, grams: Gram):
+		percentage = grams / self.SERVING_SIZE
+		self.calories = percentage * self.CALORIES
+		self.carbs = percentage * self.CARBS
+		self.protein = percentage * self.PROTEIN
+		self.fat = percentage * self.FAT
+		self.fiber = percentage * self.FIBER
+
+	def __add__(self, other: Nutrition) -> Nutrition:
+		total = Nutrition(0)
+		total.calories = self.calories + other.calories
+		total.carbs = self.carbs + other.carbs
+		total.protein = self.protein + other.protein
+		total.fat = self.fat + other.fat
+		total.fiber = self.fiber + other.fiber
+		return total
+
+	def __str__(self):
+		return str({
+			'calories': self.calories, 
+			'carbs': self.carbs, 
+			'protein': self.protein,
+			'fat': self.fat,
+			'fiber': self.fiber
+		})
+
+
+class WholeWheat(Nutrition):
+
+	SERVING_SIZE: Calorie = 38
+
+	CALORIES: Gram        = 140
+	CARBS: Gram           = 27
+	PROTEIN: Gram         = 6
+	FAT: Gram             = 0.5
+	FIBER: Gram           = 5
+
+
+class WhiteWheat(Nutrition):
+
+	SERVING_SIZE: Calorie = 36
+
+	CALORIES: Gram        = 130
+	CARBS: Gram           = 26
+	PROTEIN: Gram         = 5
+	FAT:Gram              = 0.5
+	FIBER: Gram           = 1
+
+class Starter(WholeWheat):
+	pass
+
+
+class Sourdough:
+
+	def __init__(self, starter: Starter, whole: WholeWheat, white: WhiteWheat):
+		self.starter = starter
+		self.whole = whole
+		self.white = white
+
+	def nutrition(self) -> Nutrition:
+		return self.starter + self.whole + self.white
+
+	def __repr__(self):
+		return str(self)
+
+	def __str__(self):
+		return str(self.nutrition())
+
