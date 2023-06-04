@@ -34,13 +34,12 @@ class Nutrition:
 		return total
 
 	def __str__(self):
-		return str({
-			'calories': self.calories, 
-			'carbs': self.carbs, 
-			'protein': self.protein,
-			'fat': self.fat,
-			'fiber': self.fiber
-		})
+		return f'''\
+calories: {self.calories:.2f}
+carbs:    {self.carbs:.2f}
+protein:  {self.protein:.2f}
+fat:      {self.fat:.2f}
+fiber:    {self.fiber:.2f}'''
 
 
 class WholeWheat(Nutrition):
@@ -83,4 +82,3 @@ class Sourdough:
 
 	def __str__(self):
 		return str(self.nutrition())
-
