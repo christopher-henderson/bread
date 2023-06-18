@@ -24,7 +24,7 @@ class Nutrition:
 		self.fat = percentage * self.FAT
 		self.fiber = percentage * self.FIBER
 
-	def __add__(self, other: Nutrition) -> Nutrition:
+	def __add__(self, other):
 		total = Nutrition(0)
 		total.calories = self.calories + other.calories
 		total.carbs = self.carbs + other.carbs
